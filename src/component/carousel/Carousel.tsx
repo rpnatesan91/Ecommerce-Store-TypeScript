@@ -1,77 +1,94 @@
-import React, { useEffect } from "react";
+import { useState } from "react";
 import "./Carousel.css";
-import car from "../../Images/car.jpg";
-import pen from "../../Images/pen.jpg";
-import road from "../../Images/road.jpg";
+import { Category } from "../../model/model";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import IconButton from "@mui/material/IconButton";
 
-function Carousel() {
-  let slideIndex = 1;
+interface IncomingData {
+  categoryData: Category[];
+  // newlist: any;
+}
 
-  useEffect(() => {
-    showSlides(slideIndex);
-  }, []);
-
-  const plusSlides = (n: any) => {
-    showSlides((slideIndex += n));
+function Carousel({ categoryData }: IncomingData) {
+  const [index, setIndex] = useState(0);
+  const changeCategory = (i: number) => {
+    setIndex(i);
   };
-  const currentSlide = (n: any) => {
-    showSlides((slideIndex = n));
-  };
-
-  function showSlides(n: number) {
-    let i;
-    let slides: any = document.getElementsByClassName("mySlides");
-    let dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {
-      slideIndex = 1;
-    }
-    if (n < 1) {
-      slideIndex = slides.length;
-    }
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-  }
-
   return (
     <div className="main-container">
       <div className="slideshow-container">
-        <div className="mySlides fade">
-          <div className="numbertext">1 / 3</div>
-          <img src={car} style={{ width: "100%" }} />
-          <div className="text">Caption Text</div>
+        <div className=" fade">
+          <div className="numbertext">
+            {index + 1} /{categoryData?.length}
+          </div>
+          <img
+            src={categoryData[index]?.image}
+            alt="carouselImage"
+            style={{ width: "100%", height: "450px", objectFit: "fill" }}
+          />
+          <div className="text">{categoryData[index]?.name}</div>
         </div>
+        <IconButton
+          disabled={index === 0}
+          onClick={() => changeCategory(index - 1)}
+          size="large"
+          sx={{
+            cursor: "pointer",
+            position: "absolute",
+            top: " 50%",
+            width: "auto",
+            padding: " 16px",
+            marginTop: "-22px",
+            color: "black",
+            fontWeight: "bold",
+            fontSize: " 40px",
+            transition: " 0.6s ease",
+            borderRadius: " 0 10px 10px 0",
+            userSelect: "none",
+          }}
+        >
+          <ArrowCircleLeftIcon fontSize="large" />
+        </IconButton>
 
-        <div className="mySlides fade">
-          <div className="numbertext">2 / 3</div>
-          <img src={pen} style={{ width: "50%" }} />
-          <div className="text">Caption Two</div>
-        </div>
-
-        <div className="mySlides fade">
-          <div className="numbertext">3 / 3</div>
-          <img src={road} style={{ width: "100%" }} />
-          <div className="text">Caption Three</div>
-        </div>
-
-        <a className="prev" onClick={() => plusSlides(-1)}>
-          ❮
-        </a>
-        <a className="next" onClick={() => plusSlides(1)}>
-          ❯
-        </a>
+        <IconButton
+          disabled={index >= categoryData.length - 1}
+          onClick={() => changeCategory(index + 1)}
+          size="large"
+          sx={{
+            cursor: "pointer",
+            position: "absolute",
+            top: " 50%",
+            width: "auto",
+            padding: " 16px",
+            marginTop: "-22px",
+            color: "black",
+            fontWeight: "bold",
+            fontSize: " 40px",
+            transition: " 0.6s ease",
+            borderRadius: "3px 0 0 3px",
+            userSelect: "none",
+            right: "0",
+          }}
+        >
+          <ArrowCircleRightIcon fontSize="large" />
+        </IconButton>
       </div>
       <br />
 
       <div style={{ textAlign: "center" }}>
-        <span className="dot" onClick={() => currentSlide(1)}></span>
-        <span className="dot" onClick={() => currentSlide(2)}></span>
-        <span className="dot" onClick={() => currentSlide(3)}></span>
+        {categoryData?.map((data, i) => {
+          return (
+            <>
+              <span
+                key={i}
+                className="dot"
+                onClick={() => changeCategory(i)}
+                style={{ backgroundColor: index === i ? "black" : "grey" }}
+              ></span>
+            </>
+          );
+        })}
       </div>
     </div>
   );

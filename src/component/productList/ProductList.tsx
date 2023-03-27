@@ -1,29 +1,17 @@
-import { type } from "os";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import ProductCard from "../card/Card";
-import { Data } from "../../model/model";
+import { Data, Category } from "../../model/model";
 import Carousel from "../carousel/Carousel";
-
-const menShirts = "Men`s Shirts";
-enum Category {
-  shirts = "small",
-  shoes = "small",
-  watch = "small",
-}
-enum sizes {
-  small,
-  medium,
-  large,
-}
 
 function ProductList() {
   const [data, setData] = useState<Data[] | []>([]);
-  // const[category, setCategory] = useState<Category>(Category.shoes);
-  const [list, setList] = useState([]);
+  const [category, setCategory] = useState<Category[]>([]);
+  //const [list, setList] = useState([]);
 
   useEffect(() => {
     getProducts();
+    getCategories();
   }, []);
 
   const getProducts = async () => {
@@ -39,6 +27,19 @@ function ProductList() {
       console.log(result.data);
     } catch (e) {
       console.log("page not found");
+    }
+  };
+
+  const getCategories = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.escuelajs.co/api/v1/categories?limit=5"
+      );
+
+      setCategory(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -63,7 +64,7 @@ function ProductList() {
 
   return (
     <>
-      <Carousel />
+      <Carousel categoryData={category} />
       <div
         style={{
           display: "flex",

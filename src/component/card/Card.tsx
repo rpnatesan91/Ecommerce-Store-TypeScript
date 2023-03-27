@@ -10,8 +10,6 @@ import Avatar from "@mui/material/Avatar";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Data } from "../../model/model";
@@ -31,14 +29,10 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-// interface Props {
-//   product: Data;
-// }
 interface IncomingData {
   product: Data;
   isEnabled?: Boolean;
   count: any;
-  // newlist: any;
 }
 export default function ProductCard({
   product,

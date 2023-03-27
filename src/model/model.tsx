@@ -13,3 +13,11 @@ export interface Data {
   images?: string[];
   cart: number;
 } //? - Optional property
+
+export interface Category {
+  creationAt: string;
+  id: number;
+  image: string;
+  name: string;
+  updatedAt: string;
+} //? - Optional property
