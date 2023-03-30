@@ -13,6 +13,8 @@ import { red } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Data } from "../../model/model";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -50,14 +52,15 @@ IncomingData) {
       sx={{
         width: 300,
         borderStyle: "solid",
-        margin: "2px",
-        borderColor: "rgb(18,18,18,0.1)",
+        margin: "5px",
+        borderColor: "grey",
+        borderBlockColor: "yellow",
       }}
     >
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+            {product.id}
           </Avatar>
         }
         action={
@@ -75,7 +78,7 @@ IncomingData) {
         image={product.images ? product.images[0] : ""}
         alt={product.title}
       />
-      <CardContent>Price:{product.price}</CardContent>
+      <CardContent>Price:${product.price} CAD/EA</CardContent>
       <CardActions disableSpacing>
         {/* <IconButton aria-label="add to favorites">
           <FavoriteIcon />
@@ -89,14 +92,14 @@ IncomingData) {
             count("add", product);
           }}
         >
-          +
+          <AddCircleOutlineIcon />
         </button>
         <button
           onClick={() => {
             count("remove", product);
           }}
         >
-          -
+          <RemoveCircleOutlineIcon />
         </button>
         <ExpandMore
           expand={expanded}

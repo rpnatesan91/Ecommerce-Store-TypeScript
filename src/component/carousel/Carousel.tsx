@@ -5,6 +5,7 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import IconButton from "@mui/material/IconButton";
 
+
 interface IncomingData {
   categoryData: Category[];
   // newlist: any;
@@ -71,6 +72,7 @@ function Carousel({ categoryData }: IncomingData) {
             right: "0",
           }}
         >
+          key
           <ArrowCircleRightIcon fontSize="large" />
         </IconButton>
       </div>
@@ -80,12 +82,12 @@ function Carousel({ categoryData }: IncomingData) {
         {categoryData?.map((data, i) => {
           return (
             <>
-              <span
-                key={i}
+              <div
+                key={data.id}
                 className="dot"
                 onClick={() => changeCategory(i)}
                 style={{ backgroundColor: index === i ? "black" : "grey" }}
-              ></span>
+              ></div>
             </>
           );
         })}
