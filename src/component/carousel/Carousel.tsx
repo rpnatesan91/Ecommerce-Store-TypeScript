@@ -5,7 +5,6 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import IconButton from "@mui/material/IconButton";
 
-
 interface IncomingData {
   categoryData: Category[];
   // newlist: any;
@@ -72,7 +71,6 @@ function Carousel({ categoryData }: IncomingData) {
             right: "0",
           }}
         >
-          key
           <ArrowCircleRightIcon fontSize="large" />
         </IconButton>
       </div>

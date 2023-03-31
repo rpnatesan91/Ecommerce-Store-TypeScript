@@ -15,7 +15,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Data } from "../../model/model";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-
+import PlusOneIcon from "@mui/icons-material/PlusOne";
+import { Button } from "@mui/material";
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
@@ -79,37 +80,39 @@ IncomingData) {
         alt={product.title}
       />
       <CardContent>Price:${product.price} CAD/EA</CardContent>
-      <CardActions disableSpacing>
-        {/* <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton> */}
+      <div
+      // style={{
+      //   display: "flex",
+      //   flexWrap: "wrap",
+      //   flexDirection: "row",
+      // }}
+      >
         Cart Qty:{product.cart}
-        <button
+        <Button
+          sx={{}}
           onClick={() => {
             count("add", product);
           }}
         >
-          <AddCircleOutlineIcon />
-        </button>
-        <button
+          <PlusOneIcon />
+        </Button>
+        <Button
+          sx={{}}
           onClick={() => {
             count("remove", product);
           }}
         >
           <RemoveCircleOutlineIcon />
-        </button>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
+        </Button>
+      </div>
+      <ExpandMore
+        expand={expanded}
+        onClick={handleExpandClick}
+        aria-expanded={expanded}
+        aria-label="show more"
+      >
+        <ExpandMoreIcon />
+      </ExpandMore>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <Typography variant="body2" color="text.secondary">
           {product.description}
