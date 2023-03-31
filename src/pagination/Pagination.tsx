@@ -48,6 +48,7 @@ export default function Pagination({ data, setPageData }: IncomingData) {
       onPageChange={handleChangePage}
       rowsPerPage={rowsPerPage}
       onRowsPerPageChange={handleChangeRowsPerPage}
+      labelRowsPerPage="Products Per Page"
     />
   );
 }

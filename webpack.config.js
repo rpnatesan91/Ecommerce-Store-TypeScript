@@ -10,7 +10,7 @@ module.exports = {
   mode: "development",
   entry: { bundle: path.resolve(__dirname, "./src/index.tsx") },
   output: {
-    filename: "bundle.[contenthash].js",
+    filename: "bundle[contenthash].js",
     publicPath: "/",
     clean: true,
   },
