@@ -81,11 +81,12 @@ IncomingData) {
       />
       <CardContent>Price:${product.price} CAD/EA</CardContent>
       <div
-      // style={{
-      //   display: "flex",
-      //   flexWrap: "wrap",
-      //   flexDirection: "row",
-      // }}
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          flexDirection: "row",
+          marginRight: "10px",
+        }}
       >
         Cart Qty:{product.cart}
         <Button

@@ -1,0 +1,23 @@
+.element {
+  border-radius: 50%;
+  height: 170px;
+  width: 170px;
+  margin: 3px;
+  cursor: pointer;
+  transition: 1s ease-out;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.element:hover{
+        transform: scale(1.2) ;
+        transition: 1s ease-in;
+        
+
+}

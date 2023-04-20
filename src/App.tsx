@@ -8,7 +8,8 @@ function App() {
     <>
       <ResponsiveAppBar />
       <Routes>
-        <Route path="/productlist" element={<ProductList />}></Route>
+        <Route path="/" element={<ProductList />}></Route>
+        <Route path="/productlist/:id" element={<ProductList />}></Route>
         <Route path="/demolist" element={<DemoList />} />
       </Routes>
     </>

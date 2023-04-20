@@ -5,22 +5,30 @@ import { Data, Category } from "../../model/model";
 import Carousel from "../carousel/Carousel";
 import TablePagination from "@mui/material/TablePagination";
 import Pagination from "../../pagination/Pagination";
+import Categories from "../category/Categories";
+import { useParams } from "react-router-dom";
 
 function ProductList() {
   const [data, setData] = useState<Data[] | []>([]);
   const [category, setCategory] = useState<Category[]>([]);
   const [pageData, setPageData] = useState<Data[] | []>([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    getProducts();
+    getProducts(id);
     getCategories();
-  }, []);
+    console.log("id", id);
+  }, [id]);
 
-  const getProducts = async () => {
+  const getProducts = async (id) => {
+    let url;
+    if (+id > 0) {
+      url = "https://api.escuelajs.co/api/v1/products/?categoryId=" + id;
+    } else {
+      url = "https://api.escuelajs.co/api/v1/products/";
+    }
     try {
-      const result = await axios.get(
-        "https://api.escuelajs.co/api/v1/products/"
-      );
+      const result = await axios.get(url);
       setData(
         result &&
           result.data.map((newList: Data) => {
@@ -68,11 +76,13 @@ function ProductList() {
   return (
     <>
       <Carousel categoryData={category} />
+      <Categories categoryList={category} />
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-evenly",
+          margin: "50px",
         }}
       >
         <Pagination data={data} setPageData={setPageData} />

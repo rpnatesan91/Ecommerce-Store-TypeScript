@@ -25,7 +25,7 @@ function Carousel({ categoryData }: IncomingData) {
           <img
             src={categoryData[index]?.image}
             alt="carouselImage"
-            style={{ width: "100%", height: "450px", objectFit: "fill" }}
+            style={{ width: "100%", height: "450px", objectFit: "contain" }}
           />
           <div className="text">{categoryData[index]?.name}</div>
         </div>

@@ -44,7 +44,7 @@ module.exports = {
       path: `./.env`,
     }),
     new WebpackManifestPlugin(),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
 
   module: {
